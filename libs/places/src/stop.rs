@@ -186,10 +186,13 @@ fn get_lines(
             (None, None) => Ordering::Equal,
         }
         .then_with(|| match (&lhs.code, &rhs.code) {
-            (Some(l), Some(r)) => human_sort::compare(l, r),
-            _ => Ordering::Equal,
+            (Some(l), Some(r)) => l.cmp(r),  // ← plain cmp, not human_sort
+            (Some(_), None) => Ordering::Less,
+            (None, Some(_)) => Ordering::Greater,
+            (None, None) => Ordering::Equal,
         })
-        .then_with(|| human_sort::compare(&lhs.name, &rhs.name))
+        .then_with(|| lhs.name.cmp(&rhs.name))
+        .then_with(|| lhs.id.cmp(&rhs.id))
     });
     lines
 }
