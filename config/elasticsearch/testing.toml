@@ -1,5 +1,14 @@
 mode = "testing"
 
 [elasticsearch]
-url = "http://localhost:9202"
+url = "http://localhost:9200"
 timeout = 10000
+
+
+[elasticsearch.indexes]
+  admin = "munin_admin_fr_*"
+  addr  = "munin_addr_fr_*"
+  poi   = "munin_poi_fr_*"
+  street = "munin_street_fr_*"
+  postalcode = "munin_postcode_fr_*"
+  

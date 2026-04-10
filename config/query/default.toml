@@ -64,3 +64,6 @@
       decay = 0.4
   [query.reverse_query]
     radius = 1000 # search radius in meters.
+[elasticsearch]
+url = "http://localhost:9200"
+index_prefix = "munin_"

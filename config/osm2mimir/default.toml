@@ -23,6 +23,13 @@ update_templates = true
   number_of_shards = 1
   number_of_replicas = 0
 
+[container-addr]
+  name = "addr"
+  dataset = "fr"
+  visibility = "public"
+  number_of_shards = 1
+  number_of_replicas = 0
+
 # This section is ignored if mimirsbrunn is compiled without the `db-storage`
 # option.
 [database]
@@ -30,7 +37,7 @@ update_templates = true
   cache_size = 10_000
 
 [pois]
-  import = false
+  import = true
   max_distance_reverse = 1000 # in meters
   [pois.config]
     [[pois.config.types]]
@@ -132,8 +139,24 @@ update_templates = true
         value = "park"
 
 [streets]
-  import = false
+  import = true
   [streets.exclusions]
     # See [OSM Key Highway](https://wiki.openstreetmap.org/wiki/Key:highway) for background.
     highway = [ "bus_guideway", "bus_stop", "elevator", "escape", "platform" ]
     public_transport = [ "platform", "hub" ]
+
+[elasticsearch]
+  url = "http://localhost:9200"
+  index_prefix = "munin_"
+
+[import]
+  admins = true
+  streets = true
+  addrs = true
+  pois = true
+  public_transport = true
+
+# [osm2mimir]
+# import_street = true
+# import_address = true
+# import_poi = true

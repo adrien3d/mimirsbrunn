@@ -51,3 +51,10 @@
 
   # Waiting time in milliseconds after the first failure
   wait = 1000
+
+[elasticsearch.indexes]
+  admin = "munin_admin_fr_*"
+  addr  = "munin_addr_fr_*"
+  poi   = "munin_poi_fr_*"
+  street = "munin_street_fr_*"
+  postalcode = "munin_postcode_fr_*"
